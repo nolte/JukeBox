@@ -1,5 +1,6 @@
 package de.noltarium.jukebox.rest;
 
+import javax.annotation.PostConstruct;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
@@ -17,7 +18,7 @@ import de.noltarium.jukebox.MusicManagerImpl;
 @Path("/controll")
 public class RestJukeboxRemote {
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(MusicManagerImpl.class);
+			.getLogger(RestJukeboxRemote.class);
 
 	@Autowired
 	MusicManager musicManager;
@@ -45,4 +46,7 @@ public class RestJukeboxRemote {
 		return Response.status(200).entity("stop").build();
 
 	}
+	
+	
+	
 }
