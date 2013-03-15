@@ -16,9 +16,9 @@ import de.noltarium.jukebox.MusicManagerImpl;
 
 @Component
 @Path("/controll")
-public class RestJukeboxRemote {
+public class JukeboxRemoteRestImpl {
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RestJukeboxRemote.class);
+			.getLogger(JukeboxRemoteRestImpl.class);
 
 	@Autowired
 	MusicManager musicManager;

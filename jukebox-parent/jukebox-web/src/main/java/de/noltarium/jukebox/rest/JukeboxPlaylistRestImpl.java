@@ -32,9 +32,9 @@ import de.noltarium.jukebox.MusicManager;
 
 @Component
 @Path("/playlist")
-public class RestJukeboxPlaylist {
+public class JukeboxPlaylistRestImpl  {
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RestJukeboxPlaylist.class);
+			.getLogger(JukeboxPlaylistRestImpl.class);
 
 	@Autowired
 	MusicManager musicManager;
