@@ -6,6 +6,8 @@ import java.io.InputStream;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import javazoom.jl.player.advanced.PlaybackEvent;
+import javazoom.jl.player.advanced.PlaybackListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import de.noltarium.jukebox.model.PlayList;
 import de.noltarium.jukebox.model.PlayListItem;
 
-public class MusicManagerImpl implements MusicManager {
+public class MusicManagerImpl extends PlaybackListener implements MusicManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MusicManagerImpl.class);
 	Thread t;
@@ -25,26 +27,7 @@ public class MusicManagerImpl implements MusicManager {
 	public void play() {
 
 		if (t == null || !t.isAlive()) {
-
-			PlayListItem nextTrack = playList.getNextTrack();
-
-			InputStream stream;
-			try {
-				stream = new FileInputStream(nextTrack.getPath());
-
-				player = new AdvancedPlayer(stream);
-
-				LOGGER.debug("play n");
-				MusicPlayThread musicPlayThread = new MusicPlayThread(player);
-				t = new Thread(musicPlayThread);
-				t.start();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JavaLayerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			playNextTrack();
 		} else {
 			LOGGER.debug("Thread is playing");
 		}
@@ -63,6 +46,38 @@ public class MusicManagerImpl implements MusicManager {
 
 	public void setPlayList(PlayList playList) {
 		this.playList = playList;
+	}
+
+	public void playNextTrack() {
+		try {
+			PlayListItem nextTrack = playList.getNextTrack();
+			playList.remove(nextTrack);
+			InputStream stream;
+			try {
+				stream = new FileInputStream(nextTrack.getPath());
+
+				player = new AdvancedPlayer(stream);
+
+				LOGGER.debug("play n");
+				MusicPlayThread musicPlayThread = new MusicPlayThread(player, this);
+				t = new Thread(musicPlayThread);
+				t.start();
+			} catch (FileNotFoundException e) {
+				LOGGER.error("FileNotFoundException: {}", e);
+				throw new RuntimeException(e);
+			} catch (JavaLayerException e) {
+				LOGGER.error("JavaLayerException: {}", e);
+				throw new RuntimeException(e);
+			}
+		} catch (NullPointerException e) {
+			LOGGER.warn("no tracks in playlist {}", e);
+		}
+
+	}
+
+	public void playbackFinished(PlaybackEvent evt) {
+		LOGGER.warn("no tracks in playlist {}", evt);
+		playNextTrack();
 	}
 
 }

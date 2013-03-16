@@ -28,9 +28,12 @@ public class PlayList {
 
 	}
 
-	public PlayListItem getNextTrack() {
+	public PlayListItem getNextTrack() throws NullPointerException {
 		LOGGER.trace("getNextTrack");
-		return items.get(0);
+		if (items.size() > 0)
+			return items.get(0);
+		else
+			throw new NullPointerException("no track");
 	}
 
 	public PlayListItem getItem(long playListItemId) {
@@ -43,4 +46,7 @@ public class PlayList {
 		return null;
 	}
 
+	public void remove(PlayListItem nextTrack) {
+		items.remove(nextTrack);
+	}
 }

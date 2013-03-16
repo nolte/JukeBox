@@ -16,12 +16,12 @@
 	</logger>
 	
 	<logger name="org.springframework" additivity="false">
-		<level value="DEBUG" />
+		<level value="ERROR" />
 		<appender-ref ref="MeinConsolenAppender" />
 	</logger>
 	
 	<root>
-		<priority value="TRACE" />
+		<priority value="INFO" />
 		<appender-ref ref="MeinConsolenAppender" />
 	</root>
 
