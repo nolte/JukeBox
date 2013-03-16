@@ -58,8 +58,8 @@
 			<artifactId>jersey-client</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.javamusictag</groupId>
-			<artifactId>jid3lib</artifactId>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-core</artifactId>
 		</dependency>
 
 		<dependency>

@@ -1,7 +1,5 @@
 package de.noltarium.jukebox.rest;
 
-
-
 public class PlayListItem {
 
 	String title;
@@ -23,8 +21,5 @@ public class PlayListItem {
 	public void setInterpret(String interpret) {
 		this.interpret = interpret;
 	}
-	
-	
-	
-}
 
+}

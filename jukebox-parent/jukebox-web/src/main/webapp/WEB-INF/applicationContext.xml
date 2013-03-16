@@ -8,5 +8,6 @@
 	<context:component-scan base-package="de.noltarium.jukebox.rest" />
 
 	<bean id="musicManager" class="de.noltarium.jukebox.MusicManagerImpl" />
-
+	<bean id="fileTypeChecker" class="de.noltarium.jukebox.util.FileTypeCheckerImpl" />
+	<bean id="playListManager" class="de.noltarium.jukebox.PlayListManagerImpl" />
 </beans>

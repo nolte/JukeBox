@@ -8,6 +8,13 @@
 	<dependencyManagement>
 		<dependencies>
 
+
+			<dependency>
+				<!-- File Type check lib -->
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-core</artifactId>
+				<version>1.3</version>
+			</dependency>
 			<!-- Media Libs Start -->
 
 			<dependency>
@@ -42,7 +49,7 @@
 				<version>1.8</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- Jersey SEnd-->
+			<!-- Jersey SEnd -->
 
 			<!-- Spring 3 dependencies -->
 			<dependency>

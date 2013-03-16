@@ -10,8 +10,18 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>javazoom</groupId>
 			<artifactId>jlayer</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.javamusictag</groupId>
+			<artifactId>jid3lib</artifactId>
 		</dependency>
 
 		<dependency>
