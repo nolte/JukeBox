@@ -9,6 +9,8 @@ public class PlayListItemDTO {
 
 	String interpret;
 
+	private Integer votingPoints;
+
 	private Long playListIdentifier;
 
 	public String getTitle() {
@@ -33,6 +35,14 @@ public class PlayListItemDTO {
 
 	public void setPlayListIdentifier(Long playListIdentifier) {
 		this.playListIdentifier = playListIdentifier;
+	}
+
+	public Integer getVotingPoints() {
+		return votingPoints;
+	}
+
+	public void setVotingPoints(Integer votingPoints) {
+		this.votingPoints = votingPoints;
 	}
 
 }

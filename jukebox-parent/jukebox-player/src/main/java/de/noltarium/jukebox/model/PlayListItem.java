@@ -8,6 +8,8 @@ public class PlayListItem {
 
 	private String path;
 
+	private Integer votingPoints = 0;
+
 	public MP3File file;
 
 	public PlayListItem(Long playListIdentifier, String path, MP3File file) {
@@ -70,6 +72,14 @@ public class PlayListItem {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public Integer getVotingPoints() {
+		return votingPoints;
+	}
+
+	public void setVotingPoints(Integer votingPoints) {
+		this.votingPoints = votingPoints;
 	}
 
 }
