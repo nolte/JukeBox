@@ -9,5 +9,22 @@
 
 	<bean id="musicManager" class="de.noltarium.jukebox.MusicManagerImpl" />
 	<bean id="fileTypeChecker" class="de.noltarium.jukebox.util.FileTypeCheckerImpl" />
-	<bean id="playListManager" class="de.noltarium.jukebox.PlayListManagerImpl" />
+	<bean id="playList" class="de.noltarium.jukebox.model.PlayList" />
+	<bean id="playListManager" class="de.noltarium.jukebox.playlist.PlayListManagerImpl">
+		<constructor-arg name="playList" ref="playList" />
+	</bean>
+
+	<bean id="playListMapper" class="de.noltarium.jukebox.util.PlayListMapperImpl">
+		<property name="mapper" ref="dozerMapper" />
+	</bean>
+
+	<bean id="dozerMapper" class="org.dozer.DozerBeanMapper">
+		<property name="mappingFiles">
+			<list>
+				<!-- <value>dozer-global-configuration.xml</value> -->
+				<value>mapping.dozer.xml</value>
+			</list>
+		</property>
+	</bean>
+
 </beans>

@@ -3,8 +3,6 @@ package de.noltarium.jukebox.rest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -21,8 +19,9 @@ import org.springframework.stereotype.Component;
 
 import com.sun.jersey.multipart.FormDataParam;
 
-import de.noltarium.jukebox.PlayListManager;
+import de.noltarium.jukebox.playlist.PlayListManager;
 import de.noltarium.jukebox.util.FileTypeChecker;
+import de.noltarium.jukebox.util.PlayListMapperImpl;
 
 @Component
 @Path("/playlist")
@@ -37,9 +36,11 @@ public class JukeboxPlaylistRestImpl {
 	@Autowired
 	PlayListManager playListManager;
 
+	@Autowired
+	PlayListMapperImpl playListMapper;
+
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Path("/add")
 	public Response handleUpload(@FormDataParam("file") InputStream stream) throws Exception {
 		LOGGER.trace("handleUpload start");
 		File file = new File("/tmp/" + System.nanoTime() + ".mp3");
@@ -59,19 +60,20 @@ public class JukeboxPlaylistRestImpl {
 
 	@GET
 	public Response getPlayList() {
-		List<PlayListItem> list = new ArrayList<PlayListItem>();
-		PlayList liste = new PlayList();
+		LOGGER.trace("getPlayList start");
+		PlayListDTO mappedPlayList;
+		mappedPlayList = playListMapper.mapPlaylist(playListManager.getPlayList());
 
-		PlayListItem item = new PlayListItem();
-		item.setInterpret("test1");
-
-		PlayListItem item2 = new PlayListItem();
-		item2.setInterpret("test2");
-
-		list.add(item2);
-		list.add(item);
-		liste.setList(list);
-		return Response.ok(liste).build();
+		return Response.ok(mappedPlayList).build();
 	}
+	//
+	// @GET
+	// @Path("/{playListItemId}")
+	// public Response getPlayListItem(@PathParam("playListItemId") long
+	// playListItemId) {
+	// LOGGER.trace("getPlayListItem start {}", playListItemId);
+	//
+	// return Response.ok("sehene wir mal").build();
+	// }
 
 }

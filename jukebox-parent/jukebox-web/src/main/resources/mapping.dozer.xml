@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    
+<!--     <mapping type="one-way">  -->
+<!--     <class-a>de.noltarium.jukebox.model.PlayList</class-a> -->
+<!--     <class-b>de.noltarium.jukebox.rest.PlayListDTO</class-b>    -->
+<!--     <field> -->
+<!--       <a>items</a> -->
+<!--       <b>title</b> -->
+<!--     </field> -->
+<!--   </mapping>   -->
+    
+          
+  <mapping type="one-way"> 
+    <class-a>de.noltarium.jukebox.model.PlayListItem</class-a>
+    <class-b>de.noltarium.jukebox.rest.PlayListItemDTO</class-b>   
+    <field>
+      <a get-method="getTitle">title</a>
+      <b>title</b>
+    </field>
+    <field>
+      <a get-method="getArtist">interpret</a>
+      <b>interpret</b>
+    </field>
+  </mapping>  
+
+
+</mappings> 

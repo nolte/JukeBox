@@ -12,7 +12,7 @@ public class TestService {
 
 	@Test
 	public void upload() {
-		upload("http://127.0.0.1:8080/jukebox-web/rest/playlist/add", "test.mp3");
+		upload("http://127.0.0.1:8080/jukebox-web/rest/playlist", "test.mp3");
 	}
 
 	public void upload(String url, String fileName) {

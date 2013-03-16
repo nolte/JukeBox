@@ -1,10 +1,12 @@
 package de.noltarium.jukebox.rest;
 
-public class PlayListItem {
+public class PlayListItemDTO {
 
 	String title;
 
 	String interpret;
+
+	private Long playListIdentifier;
 
 	public String getTitle() {
 		return title;
@@ -20,6 +22,14 @@ public class PlayListItem {
 
 	public void setInterpret(String interpret) {
 		this.interpret = interpret;
+	}
+
+	public Long getPlayListIdentifier() {
+		return playListIdentifier;
+	}
+
+	public void setPlayListIdentifier(Long playListIdentifier) {
+		this.playListIdentifier = playListIdentifier;
 	}
 
 }
