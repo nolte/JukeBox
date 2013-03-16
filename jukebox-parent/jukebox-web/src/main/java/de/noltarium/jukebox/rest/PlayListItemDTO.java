@@ -1,5 +1,8 @@
 package de.noltarium.jukebox.rest;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class PlayListItemDTO {
 
 	String title;

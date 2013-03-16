@@ -7,11 +7,16 @@
 
 	<context:component-scan base-package="de.noltarium.jukebox.rest" />
 
-	<bean id="musicManager" class="de.noltarium.jukebox.MusicManagerImpl" />
+
 	<bean id="fileTypeChecker" class="de.noltarium.jukebox.util.FileTypeCheckerImpl" />
 	<bean id="playList" class="de.noltarium.jukebox.model.PlayList" />
+
 	<bean id="playListManager" class="de.noltarium.jukebox.playlist.PlayListManagerImpl">
 		<constructor-arg name="playList" ref="playList" />
+	</bean>
+
+	<bean id="musicManager" class="de.noltarium.jukebox.MusicManagerImpl">
+		<property name="playList" ref="playList" />
 	</bean>
 
 	<bean id="playListMapper" class="de.noltarium.jukebox.util.PlayListMapperImpl">

@@ -28,4 +28,19 @@ public class PlayList {
 
 	}
 
+	public PlayListItem getNextTrack() {
+		LOGGER.trace("getNextTrack");
+		return items.get(0);
+	}
+
+	public PlayListItem getItem(long playListItemId) {
+		for (PlayListItem item : items) {
+			if (playListItemId == item.getPlayListIdentifier()) {
+				return item;
+			}
+		}
+
+		return null;
+	}
+
 }

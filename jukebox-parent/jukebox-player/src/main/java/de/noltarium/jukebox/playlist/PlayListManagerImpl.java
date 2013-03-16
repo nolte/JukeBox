@@ -32,13 +32,8 @@ public class PlayListManagerImpl implements PlayListManager {
 		File destFile = null;
 		try {
 			mp3file = new MP3File(file);
-			item = new PlayListItem();
+			item = new PlayListItem(System.nanoTime(), file.getAbsolutePath(), mp3file);
 			item.setFile(mp3file);
-
-			LOGGER.info("Artist: {}", item.getArtist());
-			LOGGER.info("Album:{}", mp3file.getID3v2Tag().getAlbumTitle());
-			LOGGER.info("Identifier: {}", mp3file.getID3v2Tag().getIdentifier());
-			LOGGER.info("Title: {}", mp3file.getID3v2Tag().getSongTitle());
 
 			destFile = new File(INPUTFOLDER + item.getArtist() + "-" + item.getAlbum() + ".mp3");
 
@@ -48,7 +43,6 @@ public class PlayListManagerImpl implements PlayListManager {
 			item.setFile(mp3file);
 
 		} catch (IOException e) {
-			LOGGER.error("IOException {}", e);
 
 			// if(e.getMessage())
 			if (e instanceof FileExistsException) {
@@ -56,7 +50,7 @@ public class PlayListManagerImpl implements PlayListManager {
 				// remove the source file
 				file.delete();
 			} else {
-
+				LOGGER.error("IOException {}", e);
 				throw new RuntimeException(e);
 			}
 		} catch (TagException e) {
@@ -66,6 +60,7 @@ public class PlayListManagerImpl implements PlayListManager {
 		try {
 			mp3file = new MP3File(destFile);
 			item.setFile(mp3file);
+			item.setPath(destFile.getAbsolutePath());
 			playList.add(item);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

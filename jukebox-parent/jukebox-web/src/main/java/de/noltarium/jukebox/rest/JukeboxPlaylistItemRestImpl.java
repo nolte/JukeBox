@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import de.noltarium.jukebox.playlist.PlayListManager;
+import de.noltarium.jukebox.model.PlayList;
+import de.noltarium.jukebox.model.PlayListItem;
 import de.noltarium.jukebox.util.PlayListMapperImpl;
 
 @Component
@@ -20,7 +21,7 @@ public class JukeboxPlaylistItemRestImpl {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JukeboxPlaylistItemRestImpl.class);
 
 	@Autowired
-	PlayListManager playListManager;
+	PlayList playList;
 
 	@Autowired
 	PlayListMapperImpl playListMapper;
@@ -28,8 +29,16 @@ public class JukeboxPlaylistItemRestImpl {
 	@GET
 	public Response getPlayListItem(@PathParam("playListItemId") long playListItemId) {
 		LOGGER.trace("getPlayListItem start {}", playListItemId);
+		PlayListItem item = playList.getItem(playListItemId);
 
-		return Response.ok("sehene wir mal").build();
+		if (item != null) {
+
+			PlayListItemDTO mappedItem = playListMapper.mapPlayListItem(item);
+			return Response.ok(mappedItem).build();
+		} else {
+			return Response.noContent().build();
+		}
+
 	}
 
 }
