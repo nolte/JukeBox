@@ -24,24 +24,29 @@ public class MusicManagerImpl implements MusicManager {
 	@Override
 	public void play() {
 
-		PlayListItem nextTrack = playList.getNextTrack();
+		if (t == null || !t.isAlive()) {
 
-		InputStream stream;
-		try {
-			stream = new FileInputStream(nextTrack.getPath());
+			PlayListItem nextTrack = playList.getNextTrack();
 
-			player = new AdvancedPlayer(stream);
+			InputStream stream;
+			try {
+				stream = new FileInputStream(nextTrack.getPath());
 
-			LOGGER.debug("play n");
-			MusicPlayThread musicPlayThread = new MusicPlayThread(player);
-			t = new Thread(musicPlayThread);
-			t.start();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JavaLayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				player = new AdvancedPlayer(stream);
+
+				LOGGER.debug("play n");
+				MusicPlayThread musicPlayThread = new MusicPlayThread(player);
+				t = new Thread(musicPlayThread);
+				t.start();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JavaLayerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			LOGGER.debug("Thread is playing");
 		}
 	}
 
