@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import de.noltarium.jukebox.MusicManager;
@@ -37,6 +38,7 @@ public class JukeboxRemoteRestImpl {
 	 */
 	@GET
 	@Path("/play")
+	@Secured("ROLE_ADMIN")
 	public Response play() {
 		LOGGER.debug("play track");
 
@@ -52,6 +54,7 @@ public class JukeboxRemoteRestImpl {
 	 */
 	@GET
 	@Path("/stop")
+	@Secured("ROLE_ADMIN")
 	public Response stop() {
 		LOGGER.debug("stop track");
 
