@@ -32,6 +32,15 @@ public class JukeboxPlaylistItemRestImpl {
 	@Autowired
 	PlayListMapperImpl playListMapper;
 
+	/**
+	 * Get Request to get the playlist Item.
+	 * 
+	 * @param playListItemId
+	 *            The Item id to get.
+	 * @return Return the {@link PlayListDTO} as Response (HTTP Status 200)<br>
+	 *         if the Playlist item not found the methode return HTTP Status 202
+	 *         (no content)
+	 */
 	@GET
 	public Response getPlayListItem(@PathParam("playListItemId") long playListItemId) {
 		LOGGER.trace("getPlayListItem start {}", playListItemId);
@@ -47,6 +56,15 @@ public class JukeboxPlaylistItemRestImpl {
 
 	}
 
+	/**
+	 * Post Request to set some voting poings.
+	 * 
+	 * @param playListItemId
+	 *            The PLaylist item to vote-
+	 * @param points
+	 *            added points.
+	 * @return
+	 */
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response vote(@PathParam("playListItemId") long playListItemId, @FormDataParam("points") Integer points) {
@@ -62,6 +80,13 @@ public class JukeboxPlaylistItemRestImpl {
 
 	}
 
+	/**
+	 * Delete the item from the Playlist.
+	 * 
+	 * @param playListItemId
+	 *            the Playlist item id to remove.
+	 * @return
+	 */
 	@DELETE
 	public Response removeTrack(@PathParam("playListItemId") long playListItemId) {
 		PlayListItem item = playList.getItem(playListItemId);

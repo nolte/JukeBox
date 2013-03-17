@@ -39,6 +39,15 @@ public class JukeboxPlaylistRestImpl {
 	@Autowired
 	PlayListMapperImpl playListMapper;
 
+	/**
+	 * Upload some File.
+	 * 
+	 * @param stream
+	 *            The uploading file as {@link InputStream}
+	 * @return If all right the Methode return HTTP Status Code 200.
+	 * 
+	 * @throws Exception
+	 */
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response handleUpload(@FormDataParam("file") InputStream stream) throws Exception {
@@ -58,6 +67,11 @@ public class JukeboxPlaylistRestImpl {
 		return Response.ok("ok").build();
 	}
 
+	/**
+	 * Get the Current Playlist.
+	 * 
+	 * @return The Current playlist as {@link PlayListDTO}
+	 */
 	@GET
 	public Response getPlayList() {
 		LOGGER.trace("getPlayList start");
@@ -66,14 +80,5 @@ public class JukeboxPlaylistRestImpl {
 
 		return Response.ok(mappedPlayList).build();
 	}
-	//
-	// @GET
-	// @Path("/{playListItemId}")
-	// public Response getPlayListItem(@PathParam("playListItemId") long
-	// playListItemId) {
-	// LOGGER.trace("getPlayListItem start {}", playListItemId);
-	//
-	// return Response.ok("sehene wir mal").build();
-	// }
 
 }

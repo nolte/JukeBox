@@ -22,6 +22,7 @@ public class MusicManagerImpl extends PlaybackListener implements MusicManager {
 	AdvancedPlayer player;
 
 	PlayList playList;
+	private PlayListItem currentTrack;
 
 	@Override
 	public void play() {
@@ -50,11 +51,11 @@ public class MusicManagerImpl extends PlaybackListener implements MusicManager {
 
 	public void playNextTrack() {
 		try {
-			PlayListItem nextTrack = playList.getNextTrack();
-			playList.remove(nextTrack);
+			currentTrack = playList.getNextTrack();
+			playList.remove(currentTrack);
 			InputStream stream;
 			try {
-				stream = new FileInputStream(nextTrack.getPath());
+				stream = new FileInputStream(currentTrack.getPath());
 
 				player = new AdvancedPlayer(stream);
 
@@ -77,7 +78,14 @@ public class MusicManagerImpl extends PlaybackListener implements MusicManager {
 
 	public void playbackFinished(PlaybackEvent evt) {
 		LOGGER.warn("no tracks in playlist {}", evt);
+		currentTrack = null;
 		playNextTrack();
+	}
+
+	@Override
+	public PlayListItem getCurrentTrack() {
+		// TODO Auto-generated method stub
+		return currentTrack;
 	}
 
 }
