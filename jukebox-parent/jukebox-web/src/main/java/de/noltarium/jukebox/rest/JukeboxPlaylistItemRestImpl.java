@@ -12,6 +12,9 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import com.sun.jersey.multipart.FormDataParam;
@@ -67,7 +70,11 @@ public class JukeboxPlaylistItemRestImpl {
 	 */
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Secured("ROLE_USER")
 	public Response vote(@PathParam("playListItemId") long playListItemId, @FormDataParam("points") Integer points) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		LOGGER.debug("User: {} try to vote for track {}", user.getUsername(), playListItemId);
+
 		PlayListItem item = playList.getItem(playListItemId);
 
 		if (item != null) {
