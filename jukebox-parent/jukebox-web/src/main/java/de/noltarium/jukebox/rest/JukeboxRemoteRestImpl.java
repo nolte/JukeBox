@@ -13,6 +13,12 @@ import de.noltarium.jukebox.MusicManager;
 import de.noltarium.jukebox.model.PlayListItem;
 import de.noltarium.jukebox.util.PlayListMapperImpl;
 
+/**
+ * Music Player Remote Serice.
+ * 
+ * @author nolte
+ * 
+ */
 @Component
 @Path("/controll")
 public class JukeboxRemoteRestImpl {
@@ -32,8 +38,7 @@ public class JukeboxRemoteRestImpl {
 	@GET
 	@Path("/play")
 	public Response play() {
-
-		System.out.println("play");
+		LOGGER.debug("play track");
 
 		musicManager.play();
 
@@ -48,8 +53,7 @@ public class JukeboxRemoteRestImpl {
 	@GET
 	@Path("/stop")
 	public Response stop() {
-
-		System.out.println("stop");
+		LOGGER.debug("stop track");
 
 		musicManager.stop();
 
@@ -64,10 +68,11 @@ public class JukeboxRemoteRestImpl {
 	 */
 	@GET
 	public Response getCurrentTrack() {
-
+		LOGGER.debug("get the curent track");
 		PlayListItem track = musicManager.getCurrentTrack();
 
 		if (track == null) {
+			LOGGER.debug("no track are playing");
 			return Response.noContent().build();
 		} else {
 			PlayListItemDTO mappedTrack = playListMapper.mapPlayListItem(track);
