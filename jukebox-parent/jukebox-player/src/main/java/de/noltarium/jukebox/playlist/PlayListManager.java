@@ -3,6 +3,7 @@ package de.noltarium.jukebox.playlist;
 import java.io.File;
 
 import de.noltarium.jukebox.model.PlayList;
+import de.noltarium.jukebox.model.PlayListItem;
 
 public interface PlayListManager {
 
@@ -11,5 +12,7 @@ public interface PlayListManager {
 	PlayList getPlayList();
 
 	void cleanPlayList();
+
+	void voteForTrack(String username, PlayListItem item, Integer points);
 
 }

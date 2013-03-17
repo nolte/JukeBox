@@ -1,5 +1,8 @@
 package de.noltarium.jukebox.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.farng.mp3.MP3File;
 
 public class PlayListItem {
@@ -8,7 +11,7 @@ public class PlayListItem {
 
 	private String path;
 
-	private Integer votingPoints = 0;
+	private List<TrackVoting> votings = new ArrayList<TrackVoting>();
 
 	public MP3File file;
 
@@ -74,12 +77,17 @@ public class PlayListItem {
 		this.path = path;
 	}
 
-	public Integer getVotingPoints() {
-		return votingPoints;
+	public void addVoting(TrackVoting voting) {
+		votings.add(voting);
 	}
 
-	public void setVotingPoints(Integer votingPoints) {
-		this.votingPoints = votingPoints;
+	public Integer getVotingPoints() {
+		Integer votingPoints = 0;
+
+		for (TrackVoting voting : votings) {
+			votingPoints += voting.getPoints();
+		}
+		return votingPoints;
 	}
 
 }

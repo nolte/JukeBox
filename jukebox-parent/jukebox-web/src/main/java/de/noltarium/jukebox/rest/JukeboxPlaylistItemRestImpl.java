@@ -21,6 +21,7 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import de.noltarium.jukebox.model.PlayList;
 import de.noltarium.jukebox.model.PlayListItem;
+import de.noltarium.jukebox.playlist.PlayListManager;
 import de.noltarium.jukebox.util.PlayListMapperImpl;
 
 @Component
@@ -34,6 +35,9 @@ public class JukeboxPlaylistItemRestImpl {
 
 	@Autowired
 	PlayListMapperImpl playListMapper;
+
+	@Autowired
+	PlayListManager playListManager;
 
 	/**
 	 * Get Request to get the playlist Item.
@@ -78,7 +82,7 @@ public class JukeboxPlaylistItemRestImpl {
 		PlayListItem item = playList.getItem(playListItemId);
 
 		if (item != null) {
-			item.setVotingPoints(item.getVotingPoints() + points);
+			playListManager.voteForTrack(user.getUsername(), item, points);
 			PlayListItemDTO mappedItem = playListMapper.mapPlayListItem(item);
 			return Response.ok(mappedItem).build();
 		} else {

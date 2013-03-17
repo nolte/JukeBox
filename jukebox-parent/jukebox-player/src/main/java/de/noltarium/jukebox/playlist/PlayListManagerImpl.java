@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import de.noltarium.jukebox.model.PlayList;
 import de.noltarium.jukebox.model.PlayListItem;
+import de.noltarium.jukebox.model.TrackVoting;
 
 public class PlayListManagerImpl implements PlayListManager {
 
@@ -79,6 +80,18 @@ public class PlayListManagerImpl implements PlayListManager {
 	@Override
 	public void cleanPlayList() {
 		playList.cleanPlayList();
+
+	}
+
+	@Override
+	public void voteForTrack(String username, PlayListItem item, Integer points) {
+
+		TrackVoting voting = new TrackVoting();
+		voting.setUsername(username);
+		voting.setPoints(points);
+		item.addVoting(voting);
+
+		playList.sortByVotings();
 
 	}
 

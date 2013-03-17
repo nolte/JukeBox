@@ -17,8 +17,8 @@ public class TestVoteService {
 		// "kurz1.mp3");
 		// upload("http://127.0.0.1:8080/jukebox-web/rest/playlist",
 		// "kurz3.mp3");
-
-		upload("http://127.0.0.1:8080/jukebox-web/rest/playlist/12382742706093", "test.mp3");
+		String id = "14864951470034";
+		upload("http://127.0.0.1:8080/jukebox-web/rest/playlist/" + id, "test.mp3");
 		// upload("http://127.0.0.1:8080/jukebox-web/rest/playlist",
 		// "test2.mp3");
 		// upload("http://127.0.0.1:8080/jukebox-web/rest/playlist",
@@ -28,7 +28,7 @@ public class TestVoteService {
 	public void upload(String url, String fileName) {
 		// InputStream stream =
 		// getClass().getClassLoader().getResourceAsStream(fileName);
-		FormDataMultiPart part = new FormDataMultiPart().field("points", "2", MediaType.TEXT_PLAIN_TYPE);
+		FormDataMultiPart part = new FormDataMultiPart().field("points", "9", MediaType.TEXT_PLAIN_TYPE);
 
 		Client c = Client.create();
 		c.addFilter(new HTTPBasicAuthFilter("user", "user"));

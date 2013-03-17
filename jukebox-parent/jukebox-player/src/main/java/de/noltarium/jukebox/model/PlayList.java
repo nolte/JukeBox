@@ -1,10 +1,13 @@
 package de.noltarium.jukebox.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.noltarium.jukebox.playlist.PlayListItemVotesComparator;
 
 public class PlayList {
 
@@ -54,5 +57,10 @@ public class PlayList {
 	public void cleanPlayList() {
 		LOGGER.debug("remove all tracks from Playlist");
 		items.clear();
+	}
+
+	public void sortByVotings() {
+		Collections.sort(items, new PlayListItemVotesComparator());
+
 	}
 }
