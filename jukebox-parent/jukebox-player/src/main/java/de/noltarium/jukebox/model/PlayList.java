@@ -47,6 +47,7 @@ public class PlayList {
 	}
 
 	public void remove(PlayListItem nextTrack) {
+		LOGGER.trace("remove");
 		items.remove(nextTrack);
 	}
 }

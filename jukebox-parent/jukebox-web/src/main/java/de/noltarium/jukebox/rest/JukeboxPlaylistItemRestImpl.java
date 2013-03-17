@@ -1,6 +1,7 @@
 package de.noltarium.jukebox.rest;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -55,6 +56,19 @@ public class JukeboxPlaylistItemRestImpl {
 			item.setVotingPoints(item.getVotingPoints() + points);
 			PlayListItemDTO mappedItem = playListMapper.mapPlayListItem(item);
 			return Response.ok(mappedItem).build();
+		} else {
+			return Response.noContent().build();
+		}
+
+	}
+
+	@DELETE
+	public Response removeTrack(@PathParam("playListItemId") long playListItemId) {
+		PlayListItem item = playList.getItem(playListItemId);
+
+		if (item != null) {
+			playList.remove(item);
+			return Response.ok().build();
 		} else {
 			return Response.noContent().build();
 		}
