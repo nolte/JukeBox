@@ -8,6 +8,37 @@
 	<dependencyManagement>
 		<dependencies>
 
+			<!-- Aspect J start -->
+
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>1.6.11</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.6.11</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>2.2.2</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>3.0.5.RELEASE</version>
+			</dependency>
+			<!-- Aspect J end -->
+			<dependency>
+				<groupId>net.sf.dozer</groupId>
+				<artifactId>dozer</artifactId>
+				<version>5.4.0</version>
+			</dependency>
 
 			<dependency>
 				<!-- File Type check lib -->
@@ -62,12 +93,6 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>3.0.5.RELEASE</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>spring-aop</artifactId>
-						<groupId>org.springframework</groupId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 
 			<dependency>

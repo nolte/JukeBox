@@ -10,16 +10,21 @@
 		</layout>
 	</appender>
 
+	<logger name="de.noltarium.jukebox.util.LoggingAspect"
+		additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="MeinConsolenAppender" />
+	</logger>
 	<logger name="de.noltarium.jukebox" additivity="false">
 		<level value="TRACE" />
 		<appender-ref ref="MeinConsolenAppender" />
 	</logger>
-	
+
 	<logger name="org.springframework" additivity="false">
 		<level value="ERROR" />
 		<appender-ref ref="MeinConsolenAppender" />
 	</logger>
-	
+
 	<root>
 		<priority value="INFO" />
 		<appender-ref ref="MeinConsolenAppender" />
