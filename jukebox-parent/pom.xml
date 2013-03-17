@@ -5,6 +5,26 @@
 	<artifactId>jukebox-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<!-- <scm> -->
+	<!-- <connection>scm:git:ssh://192.168.2.78/home/shared/gitRepos/noltarium</connection> -->
+	<!-- <developerConnection>scm:git:ssh://192.168.2.78/home/shared/gitRepos/noltarium</developerConnection> -->
+	<!-- <url>scm:git:ssh://192.168.2.78/home/shared/gitRepos/noltarium</url> -->
+	<!-- <tag>HEAD</tag> -->
+	<!-- </scm> -->
+	<distributionManagement>
+		<!-- use the following if you're not using a snapshot version. -->
+		<repository>
+			<id>nexus</id>
+			<name>RepositoryProxy</name>
+			<url>http://192.168.2.78:8080/nexus/content/repositories/releases</url>
+		</repository>
+		<!-- use the following if you ARE using a snapshot version. -->
+		<snapshotRepository>
+			<id>nexus</id>
+			<name>RepositoryProxy</name>
+			<url>http://192.168.2.78:8080/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<dependencyManagement>
 		<dependencies>
 
@@ -27,7 +47,7 @@
 				<artifactId>cglib-nodep</artifactId>
 				<version>2.2.2</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
