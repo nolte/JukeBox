@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -79,6 +80,18 @@ public class JukeboxPlaylistRestImpl {
 		mappedPlayList = playListMapper.mapPlaylist(playListManager.getPlayList());
 
 		return Response.ok(mappedPlayList).build();
+	}
+
+	/**
+	 * Remove all Tracks from the Playlist.
+	 * 
+	 * @return
+	 */
+	@DELETE
+	public Response cleanPlayList() {
+		playListManager.cleanPlayList();
+
+		return Response.ok().build();
 	}
 
 }

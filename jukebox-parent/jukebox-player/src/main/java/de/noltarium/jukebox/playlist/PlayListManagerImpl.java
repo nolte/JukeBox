@@ -76,4 +76,10 @@ public class PlayListManagerImpl implements PlayListManager {
 		return playList;
 	}
 
+	@Override
+	public void cleanPlayList() {
+		playList.cleanPlayList();
+
+	}
+
 }

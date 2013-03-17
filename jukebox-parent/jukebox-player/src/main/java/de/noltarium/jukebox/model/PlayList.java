@@ -50,4 +50,9 @@ public class PlayList {
 		LOGGER.trace("remove");
 		items.remove(nextTrack);
 	}
+
+	public void cleanPlayList() {
+		LOGGER.debug("remove all tracks from Playlist");
+		items.clear();
+	}
 }

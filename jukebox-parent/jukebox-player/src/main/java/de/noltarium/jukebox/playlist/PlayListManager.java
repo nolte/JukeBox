@@ -10,4 +10,6 @@ public interface PlayListManager {
 
 	PlayList getPlayList();
 
+	void cleanPlayList();
+
 }
